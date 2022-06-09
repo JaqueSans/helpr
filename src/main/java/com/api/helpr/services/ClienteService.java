@@ -51,5 +51,14 @@ public class ClienteService {
     	if(obj.isPresent() && obj.get().getId() != objDto.getId()){
     		throw new DataIntegrityViolationException("Email já cadastrado no sistema!");
     	}
+    
+     	
+    	
+    public Cliente update(Integer id, ClienteDTO objDto) { 
+    		objDto.setId(id);
+    		Cliente oldObj =  findById(id);
+    		validaCpfEEmail(objDto);
+    		return repository.save(oldObj);
+    	
     }
 }
